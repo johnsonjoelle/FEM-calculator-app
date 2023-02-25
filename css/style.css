@@ -1,0 +1,215 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+
+}
+:root{
+  font-size: 32px;
+  font-family: 'League Spartan', sans-serif;
+}
+
+/* Colour Themes */
+/* Theme 1 */
+.theme-1 {
+  --body-bg: hsl(222, 26%, 31%);
+  --keypad-bg: hsl(223, 31%, 20%);
+  --screen-bg: hsl(224, 36%, 15%);
+  --key-1-bg: hsl(225, 21%, 49%);
+  --key-1-shadow: hsl(224, 28%, 35%);
+  --key-1-hover: hsl(224, 51%, 76%);
+  --key-2-bg: hsl(6, 63%, 50%);
+  --key-2-shadow: hsl(6, 70%, 34%);
+  --key-2-hover: hsl(6, 93%, 67%);
+  --key-3-bg: hsl(30, 25%, 89%);
+  --key-3-shadow: hsl(28, 16%, 65%);
+  --key-3-hover: hsl(0, 0%, 100%);
+  --text-colour-1: hsl(221, 14%, 31%);
+  --text-colour-2: hsl(0, 0%, 100%);
+}
+/* Theme 2 */
+.theme-2 {
+  --body-bg: hsl(0, 0%, 90%);
+  --keypad-bg: hsl(0, 5%, 81%);
+  --screen-bg: hsl(0, 0%, 93%);
+  --key-1-bg: hsl(185, 42%, 37%);
+  --key-1-shadow: hsl(185, 58%, 25%);
+  --key-1-hover: hsl(185, 41%, 56%);
+  --key-2-bg: hsl(25, 98%, 40%);
+  --key-2-shadow: hsl(25, 99%, 27%);
+  --key-2-hover: hsl(25, 100%, 61%);
+  --key-3-bg: hsl(45, 7%, 89%);
+  --key-3-shadow: hsl(35, 11%, 61%);
+  --key-3-hover: hsl(0, 0%, 100%);
+  --text-colour-1: hsl(60, 10%, 19%);
+  --text-colour-2: hsl(0, 0%, 100%);
+}
+/* Theme 3 */
+.theme-3 {
+  --body-bg: hsl(268, 75%, 9%);
+  --keypad-bg: hsl(268, 71%, 12%);
+  --screen-bg: hsl(268, 71%, 12%);
+  --key-1-bg: hsl(281, 89%, 26%);
+  --key-1-shadow: hsl(285, 91%, 52%);
+  --key-1-hover:  	hsl(281, 56%, 44%);
+  --key-2-bg: hsl(176, 100%, 44%);
+  --key-2-shadow: hsl(177, 92%, 70%);
+  --key-2-hover:  	hsl(177, 100%, 79%);
+  --key-3-bg: hsl(268, 47%, 21%);
+  --key-3-shadow: hsl(290, 70%, 36%);
+  --key-3-hover:  	hsl(268, 54%, 44%);
+  --text-colour-1: hsl(52, 100%, 62%);
+  --text-colour-2: hsl(198, 20%, 13%);
+  --text-colour-3: hsl(0, 0%, 100%);
+}
+
+body {
+  background-color: var(--body-bg);
+  display: flex;
+  min-height: 100vh;
+  min-height: 100svh;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+main {
+  width: min(100%, 500px);
+  /* max-width: 500px; */
+}
+body,
+input:not(.no-transform) {
+  text-transform: uppercase;
+}
+input {
+  font-family: 'League Spartan', sans-serif;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  padding: .2rem 0 .15rem;
+  cursor: pointer;
+  transition: all .3ms;
+}
+
+/* Calc Header and Theme Slider */
+.calc-top {
+  padding: 1rem 0;
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-colour-1)
+}
+.theme-1 .calc-top {
+  color: var(--text-colour-2);
+}
+#app-name {
+  text-transform: lowercase;
+  font-size: 1rem;
+}
+#theme-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: .4rem;
+}
+.slider-container {
+  width: 2rem;
+  position: relative;
+}
+.theme-slider {
+  width: 100%;
+}
+#theme-num {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 6px;
+}
+
+/* Calc Screen */
+#calc-screen {
+  height: 4rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 1rem;
+  border-radius: 10px;
+  background-color: var(--screen-bg);
+  color: var(--text-colour-1);
+  text-align: right;
+  font-size: 1.5rem;
+  margin-bottom: .8rem;
+}
+.theme-1 #calc-screen{
+  color: var(--text-colour-2);
+}
+
+/* Calc Keypad */
+.calc-keypad {
+  background-color: var(--keypad-bg);
+  border-radius: 10px;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: .8rem;
+}
+.button-1 {
+  background-color: var(--key-1-bg);
+  color: var(--text-colour-2);
+  box-shadow: 0 4px 0 var(--key-1-shadow);
+}
+.button-1:hover,
+.button-1:focus {
+  background-color: var(--key-1-hover);
+}
+.button-2 {
+  background-color: var(--key-2-bg);
+  color: var(--text-colour-2);
+  box-shadow: 0 4px 0 var(--key-2-shadow);
+}
+.button-2:hover,
+.button-2:focus {
+  background-color: var(--key-2-hover);
+}
+.theme-3 .button-2 {
+  color: var(--text-colour-3);
+}
+.button-3 {
+  background-color: var(--key-3-bg);
+  color: var(--text-colour-1);
+  box-shadow: 0 4px 0 var(--key-3-shadow);
+}
+.button-3:hover,
+.button-3:focus {
+  background-color: var(--key-3-hover);
+}
+.word {
+  font-size: .8rem;
+}
+.last-row {
+  grid-column: span 2;
+  padding: .3rem 0 .25rem;
+}
+
+@media screen and (max-width: 564px) {
+  body {
+    padding: 0;
+  }
+  main {
+    width: 100%;
+    margin-left: .6rem;
+    margin-right: .6rem;
+  }
+  #calc-screen {
+    padding-left: .6rem;
+    padding-right: .6rem;
+  }
+  .calc-keypad {
+    gap: .6rem;
+    padding: .6rem;
+  }
+  .key {
+    font-size: .8rem;
+  }
+  .word {
+    font-size: .6rem;
+  }
+}
