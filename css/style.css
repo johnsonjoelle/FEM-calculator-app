@@ -60,8 +60,8 @@
   --key-3-shadow: hsl(290, 70%, 36%);
   --key-3-hover:  	hsl(268, 54%, 44%);
   --text-colour-1: hsl(52, 100%, 62%);
-  --text-colour-2: hsl(198, 20%, 13%);
-  --text-colour-3: hsl(0, 0%, 100%);
+  --text-colour-2: hsl(0, 0%, 100%);
+  --text-colour-3: hsl(198, 20%, 13%);
 }
 
 body {
@@ -75,7 +75,6 @@ body {
 }
 main {
   width: min(100%, 500px);
-  /* max-width: 500px; */
 }
 body,
 input:not(.no-transform) {
@@ -140,6 +139,24 @@ input {
 }
 .theme-1 #calc-screen{
   color: var(--text-colour-2);
+}
+#screen-text::after {
+  content: "|";
+  animation: blink 1s 1s infinite
+}
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  33% {
+    opacity: 0;
+  }
+  66% {
+    opacity: 0;
+  }
+  100% {
+    display: 1;
+  }
 }
 
 /* Calc Keypad */
@@ -213,3 +230,8 @@ input {
     font-size: .6rem;
   }
 }
+
+/* @media (prefers-color-scheme: light) {
+  
+}
+@media (prefers-color-scheme: dark) {} */

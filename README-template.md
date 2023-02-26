@@ -76,8 +76,11 @@ To see how you can add code snippets, see below:
 }
 ```
 ```js
-const proudOfThisFunc = () => {
-  console.log('🎉')
+sessionStorage.setItem("theme", theme);
+if (sessionStorage.getItem('theme')) {
+  changeTheme(sessionStorage.getItem('theme'));
+} else {
+  checkThemePreference();
 }
 ```
 
