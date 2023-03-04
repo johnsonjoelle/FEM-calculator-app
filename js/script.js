@@ -1,12 +1,15 @@
 let tempArray = [];
-const errorMsg = "Invalid input";
+const errorMsg = 'Invalid';
 let themeChoice;
+let firstValue = true;
+let answerRetained = false;
 
 /* *** Code Outline ***
   1. Theme Functions
   2. Screen Printing Functions
   3. Calculation Functions
   4. User Interaction Functions
+  5. Error Checking/Avoidance Functions
 */
 
 // *** Theme Functions ***
@@ -74,10 +77,22 @@ function printToScreen() {
 }
 function printAnswer(answer) {
   tempArray = answer; // allows user to include answer in next calculation
+  answerRetained = true;
   arrayToString(); // add any necessary commas
   let screenText = tempArray[0];
-  console.log(screenText);
+  if (!isNaN(screenText)) {
+    if (!Number.isInteger(screenText)) {
+      // limit decimals shown to 5 but hide any trailing zeros after the decimal point
+      screenText = parseFloat(screenText.toFixed(5));
+    }
+  }
   $('#screen-text').text(screenText);
+}
+function printError() {
+  $('.error-notice').fadeIn();
+  setTimeout(() => {
+    $('.error-notice').fadeOut();
+  }, 1500);
 }
 
 // *** Calculation Functions ***
@@ -299,15 +314,22 @@ function doCalc(toCalc) {
 // *** User Interaction Functions ***
 function decideAction(value) {
   if (value!='del' && value!="reset" && value!='=') {
-    tempArray.push(value);
+    let valid = checkInput(value);
+    if (valid) {
+      tempArray.push(value);
+      printToScreen();
+    } else {
+      printError();
+    }
   } else if (value=='del') {
     tempArray.pop();
+    printToScreen();
   } else if (value=='reset') {
     tempArray = [];
+    printToScreen();
   } else {
     findAnswer();
   }
-  printToScreen();
 }
 function findAnswer() {
   let tempString = arrayToString();
@@ -316,8 +338,33 @@ function findAnswer() {
   doCalc(toCalc);
 }
 
+// *** Error Checking/Avoidance Function ***
+function checkInput(value) {
+  if (tempArray.length < 1) {
+    if (value=='x' || value=='/') {
+      answerRetained = false;
+      return false;
+    }
+  } else {
+    const prevValue = tempArray.length - 1;
+    console.log(tempArray[prevValue]);
+    if (isNaN(tempArray[prevValue])) {
+      if (tempArray[prevValue]=='.' && value=='.') {
+        return false;
+      }
+      if (tempArray[prevValue]!='.' && isNaN(value) && value!='.') {
+        return false;
+      }
+    }
+  }
+  if (answerRetained && tempArray.length==1 && value!='x' && value!='/' && value!='+' && value!='-') {
+    tempArray = [];
+    answerRetained = false;
+  }
+  return true;
+}
+
 $(window).on("load", function(){
-  // changeTheme($('#theme-slider').val());
   if (sessionStorage.getItem('theme')) {
     changeTheme(sessionStorage.getItem('theme'));
   } else {
