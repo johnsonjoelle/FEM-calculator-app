@@ -132,7 +132,6 @@ function checkAdd(array) {
   let num1 = 0; // num1 is 0 in case there is no number preceeding the first + sign
   let num2;
   let order;
-  console.log(array);
   for (i; i<array.length; i++) {
     if (addNums<2) {
       if (isNaN(array[i])) {
@@ -154,7 +153,6 @@ function checkAdd(array) {
         }
       }
     }
-    console.log(`Number 1 is: ${num1}`);
   }
   let result = {has: hasAddition, num1: num1, num2: num2, order: order, operation: '+'};
   return result;
@@ -306,7 +304,6 @@ function doCalc(toCalc) {
         i = toCalc.length; // End the loop
       }
     }
-    console.log(workingArray);
   }
   printAnswer(workingArray);
 }
@@ -347,7 +344,6 @@ function checkInput(value) {
     }
   } else {
     const prevValue = tempArray.length - 1;
-    console.log(tempArray[prevValue]);
     if (isNaN(tempArray[prevValue])) {
       if (tempArray[prevValue]=='.' && value=='.') {
         return false;
@@ -379,7 +375,6 @@ $(window).on("load", function(){
 
   $('#theme-slider').change(function(){
     const value = $(this).val();
-    console.log(value);
     changeTheme(value);
     themeChoice = value;
   });

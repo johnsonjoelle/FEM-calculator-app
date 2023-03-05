@@ -301,19 +301,29 @@ input {
 @media screen and (max-width: 564px) {
   body {
     padding: 0;
+    height: 100vh;
+    height: 100svh;
   }
   main {
     width: 100%;
     margin-left: .6rem;
     margin-right: .6rem;
+    display: grid;
+    grid-template-rows: max-content max-content 1fr;
+    gap: .6rem;
+    height: 100%;
   }
   #calc-screen {
     padding-left: .6rem;
     padding-right: .6rem;
+    height: 2.8rem;
+    margin-bottom: 0;
+    font-size: 1.2rem;
   }
   .calc-keypad {
     gap: .6rem;
     padding: .6rem;
+    margin-bottom: 1rem;
   }
   .key {
     font-size: .8rem;
